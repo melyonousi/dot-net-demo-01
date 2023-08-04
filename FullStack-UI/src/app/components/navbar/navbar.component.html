@@ -1,0 +1,21 @@
+<header ngClass="bg-slate-800 bg-opacity-70 backdrop-blur-sm">
+    <app-container>
+        <nav ngClass="flex gap-[30%] py-4">
+            <a routerLink="/">FullStack UI</a>
+            <ul ngClass="flex gap-3">
+                <li>
+                    <a
+                    routerLink="/employees"
+                    routerLinkActive="text-teal-700 font-bold transition-colors duration-700 ease-in-out"
+                    [routerLinkActiveOptions]="{exact: true}">Employees</a>
+                </li>
+                <li>
+                    <a
+                    routerLink="/employees/add"
+                    routerLinkActive="text-teal-700 font-bold transition-colors duration-700 ease-in-out"
+                    [routerLinkActiveOptions]="{exact: true}">Add Employee</a>
+                </li>
+            </ul>
+        </nav>
+    </app-container>
+</header>
