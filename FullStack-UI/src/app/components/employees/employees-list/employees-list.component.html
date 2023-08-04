@@ -1,6 +1,11 @@
 <app-container class="my-6 overflow-auto">
+  <div ngClass="mx-auto flex justify-end">
+    <a [routerLink]="['/employees', 'add']"
+    ngClass="bg-teal-600 px-2 py-1 rounded border border-transparent hover:bg-transparent hover:border-teal-600
+    transition-all duration-700 ease-in-out">Add New Employee</a>
+  </div>
   <table *ngIf="employees && employees.length !== 0;else noEmployees"
-    ngClass="mx-auto table-auto border-separate border-spacing-2 border border-slate-500">
+    ngClass="mx-auto w-full table-auto border-separate border-spacing-2 border border-slate-500">
     <caption class="caption-top">
       All Employees List
     </caption>
@@ -18,7 +23,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let employee of employees">
-        <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1" [innerText]="employee.id"></td>
+        <td
+          ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1 text-ellipsis overflow-x-hidden max-w-[100px]"
+          [title]="employee.id" [innerText]="employee.id"></td>
         <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1">
           <img ngClass="object-cover w-10 h-10 rounded-full" [src]="employee.profile" [alt]="employee.fullName">
         </td>
@@ -27,17 +34,16 @@
         <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1" [innerText]="employee.phone"></td>
         <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1" [innerText]="employee.department"></td>
         <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1" [innerText]="employee.salary"></td>
-        <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1 space-x-1">
-          <button ngClass="bg-red-700 px-2 rounded-sm"><fa-icon [icon]="faTrash" /></button>
-          <button ngClass="bg-teal-600 px-2 rounded-sm"><fa-icon [icon]="faEdit" /></button>
-          <button ngClass="bg-teal-600 px-2 rounded-sm"><fa-icon [icon]="faEye" /></button>
+        <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1 text-center">
+          <a ngClass="inline-block border border-teal-600 hover:bg-teal-600 px-2 rounded-sm transition-all duration-700 ease-in-out"
+            [routerLink]="['/employees','edit', employee.id]"><fa-icon [icon]="faEye" /></a>
         </td>
       </tr>
     </tbody>
   </table>
-  <ng-template #loggedOut>
-    Please friend, login.
-  </ng-template>
+  <div *ngIf="loadEmployee">
+    loading employee list..
+  </div>
   <ng-template #noEmployees>
     <p>No Employees Found</p>
   </ng-template>

@@ -27,12 +27,54 @@ namespace FullStack.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddEmployee([FromBody] Employee employeeRequest)
         {
-            Guid id = Guid.NewGuid();
-            employeeRequest.Id = id;
-            employeeRequest.Profile = $"https://source.unsplash.com/random/?profile,{id}";
+            employeeRequest.Id = Guid.NewGuid();
             await _fullStackDbContext.Employees.AddAsync(employeeRequest);
             await _fullStackDbContext.SaveChangesAsync();
             return Ok(employeeRequest);
+        }
+
+        [HttpGet]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> GetEmployee([FromRoute] Guid id)
+        {
+            var employee = await _fullStackDbContext.Employees.FirstOrDefaultAsync(emp => emp.Id == id);
+
+            if (employee == null) return NotFound();
+
+            return Ok(employee);
+        }
+
+        [HttpPut]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> UpdateEmployee([FromRoute] Guid id, Employee udpateEmployeeRequest)
+        {
+            var employee = await _fullStackDbContext.Employees.FindAsync(id);
+
+            if (employee == null) return NotFound();
+
+            employee.FullName = udpateEmployeeRequest.FullName;
+            employee.Phone = udpateEmployeeRequest.Phone;
+            employee.Email = udpateEmployeeRequest.Email;
+            employee.Profile = udpateEmployeeRequest.Profile;
+            employee.Department = udpateEmployeeRequest.Department;
+            employee.Salary = udpateEmployeeRequest.Salary;
+            await _fullStackDbContext.SaveChangesAsync();
+            return Ok(udpateEmployeeRequest);
+        }
+
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> DeleteEmployee([FromRoute] Guid id)
+        {
+            var employee = await _fullStackDbContext.Employees.FindAsync(id);
+
+            if (employee == null) return NotFound();
+
+            _fullStackDbContext.Employees.Remove(employee);
+
+            await _fullStackDbContext.SaveChangesAsync();
+
+            return Ok(employee);
         }
     }
 }

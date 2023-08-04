@@ -11,9 +11,9 @@ export class AddEmployeeComponent {
   addEmployeeRequest: Employee = {
     id: '',
     fullName: '',
-    profile: '',
+    profile: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
     email: '',
-    phone: '0',
+    phone: '',
     salary: 0,
     department: ''
   }

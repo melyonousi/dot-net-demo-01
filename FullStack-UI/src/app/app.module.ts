@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AddEmployeeComponent } from './components/employees/add-employee/add-employee.component';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EditEmployeeComponent } from './components/employees/edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     EmployeesListComponent,
     HomeComponent,
     AddEmployeeComponent,
+    EditEmployeeComponent,
   ],
   imports: [
     BrowserModule,
