@@ -6,7 +6,7 @@
   </div>
   <table *ngIf="employees && employees.length !== 0;else noEmployees"
     ngClass="mx-auto w-full table-auto border-separate border-spacing-2 border border-slate-500">
-    <caption class="caption-top">
+    <caption ngClass="caption-top">
       All Employees List
     </caption>
     <thead>
@@ -23,8 +23,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let employee of employees">
-        <td
-          ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1 text-ellipsis overflow-x-hidden max-w-[100px]"
+        <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1 text-ellipsis overflow-x-hidden max-w-[100px]"
           [title]="employee.id" [innerText]="employee.id"></td>
         <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1">
           <img ngClass="object-cover w-10 h-10 rounded-full" [src]="employee.profile" [alt]="employee.fullName">
